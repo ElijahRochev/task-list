@@ -10,7 +10,7 @@ export default function TaskItem(props) {
 
         <div>{props.title}</div>
 
-        <button className='remove'>remove</button>
+        <button onClick={() => props.remove(props.task)} className='remove'>remove</button>
         
     </div>
   )

@@ -17,6 +17,11 @@ function App() {
       title
     }
     setTasks([...tasks, newTask])
+    setTitle("")
+  }
+
+  function deleteTask(task) {
+    setTasks(tasks.filter(t => t.title !== task.title))
   }
 
   return (
@@ -24,7 +29,7 @@ function App() {
     <div className="App">
       <div className="taskList">
         <h1>todos</h1>
-        <form>
+        <form onSubmit={addNewTask}>
           <MyInput 
             value={title}
             onChange={e => setTitle(e.target.value)}
@@ -33,7 +38,7 @@ function App() {
             
           />
         </form>
-        <TaskList tasks={tasks}/>
+        <TaskList remove={deleteTask} tasks={tasks}/>
       </div>
     </div>
 
