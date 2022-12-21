@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+}
+.App{
+    display: flex;
+    justify-content: center;
+}
+.taskList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    background-color: bisque;
+}

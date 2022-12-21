@@ -1,8 +1,15 @@
-import React from 'react'
+ import React from 'react'
+import TaskItem from './TaskItem'
 
-export default function TaskList() {
+export default function TaskList({tasks}) {
 
 return (
-    <div></div>
+    <div>
+        {
+            tasks.map((task) =>
+                <TaskItem task={task} title={task.title}/>
+            )
+        }
+    </div>
 )
 }
