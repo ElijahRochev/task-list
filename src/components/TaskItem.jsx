@@ -6,7 +6,7 @@ export default function TaskItem(props) {
   return (
     <div className='task'>
 
-        <input type="checkbox"/>
+        <input type="checkbox" checked={props.checked} onChange={() => props.change(props.task)}/>
 
         <div>{props.title}</div>
 
