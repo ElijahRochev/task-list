@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../style/taskItem.css"
 
 export default function TaskItem(props) {
     
+  const [checked, setChecked] = useState(false);
+
+  function handleChange() {
+		setChecked(!checked);
+	}
+  
   return (
-    <div className='task'>
+    <div className={`task ${checked ? 'doneTask' : ''}`}>
 
-        <input type="checkbox" checked={props.checked} onChange={() => props.change(props.task)}/>
-
+        <input type="checkbox" checked={checked} onChange={() => {handleChange(props.task)}  }/>
+        
         <div>{props.title}</div>
 
         <button onClick={() => props.remove(props.task)} className='remove'>remove</button>
