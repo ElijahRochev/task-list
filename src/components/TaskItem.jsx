@@ -1,22 +1,31 @@
 import React, { useState } from 'react'
 import "../style/taskItem.css"
 
-export default function TaskItem(props) {
+export default function TaskItem({setTasks, statusAllTask, change, task,tasks, title, }) {
     
-  const [checked, setChecked] = useState(false);
+  const [status, setStatus] = useState(false);
 
   function handleChange() {
-		setChecked(!checked);
+    if (task.status) {
+      task.status = false
+    }else{
+      task.status = true
+    }
+		setStatus(!status);
 	}
+  function removeTask(id) {
+    let newTaskList = [...tasks].filter(task => task.id !== id)
+    setTasks(newTaskList)
+  }
   
   return (
-    <div className={`task ${checked ? 'doneTask' : ''}`}>
+    <div className={`task ${status ? 'doneTask' : ' '}`}>
 
-        <input type="checkbox" checked={checked} onChange={() => {handleChange(props.task)}  }/>
+        <input type="checkbox" status={status} onChange={() => {handleChange()}  }/>
         
-        <div>{props.title}</div>
+        <div>{title}</div>
 
-        <button onClick={() => props.remove(props.task)} className='remove'>remove</button>
+        <button onClick={() => {removeTask(task.id)}} className='remove'>remove</button>
         
     </div>
   )

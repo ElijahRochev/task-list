@@ -3,11 +3,14 @@ import MyInput from './Ipnut/MyInput'
 
 export default function TaskForm({create}) {
   const [title, setTitle] = useState([])
-
+  let id = Math.random() * (100000 - 1) + 1
+  let status = false
   const addNewTask = (e) => {
     e.preventDefault()
     const newTask = {
-      ...title
+      ...title,
+      id,
+      status
     }
     create(newTask)
     setTitle({title: " "})

@@ -5,21 +5,23 @@ import TaskForm from "./components/TaskForm";
 import Footer from "./components/Footer";
 function App() {
   const [tasks, setTasks] = useState([])
-  const deleteTask = (task) => {
-    setTasks(tasks.filter(t => t.title !== task.title))
-  }
+  
   const createTask = (newTask) => {
     setTasks([newTask, ...tasks])
   }
-
+  
   const [checked, setChecked] = useState(false);
   
 	function handleChange() {
 		setChecked(!checked);
 	}
-  const activeTask = (task) => {
-    setTasks(tasks.filter(t => t.checked == true))
+  const activeTask = () => {
+    console.log(tasks);
+    let activeTasks = tasks.filter(task => task.status !== true)
+    setTasks(activeTasks)
   }
+ /*  const comp
+ */
   return (
 
     <div className="App">
@@ -29,7 +31,7 @@ function App() {
         <button>checked</button>
         <TaskForm create={createTask}/>
         </div>
-        <TaskList checked={checked} change={handleChange} remove={deleteTask} tasks={tasks}/>
+        <TaskList setTasks={setTasks} statusAllTask={checked} change={handleChange}  tasks={tasks}/>
       <Footer activeTask={activeTask} tasks={tasks}/>
       </div>
     </div>
