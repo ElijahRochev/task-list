@@ -1,29 +1,28 @@
 import React, { useState } from 'react'
-import "../style/taskItem.css"
 
-export default function TaskItem({setTasks, statusAllTask, change, task,tasks, title, }) {
-    
-  const [status, setStatus] = useState(false);
-
+export default function TaskItem({allTask,task,removeTask }) {
+  /*   
+  const [status, setStatus] = useState(task.status);
+ */
   function handleChange() {
-    if (task.status) {
-      task.status = false
-    }else{
-      task.status = true
-    }
-		setStatus(!status);
+    task.status = !task.status
+    
 	}
-  function removeTask(id) {
-    let newTaskList = [...tasks].filter(task => task.id !== id)
-    setTasks(newTaskList)
+/*   function taskFilter(tasks, id) {
+    return [...tasks].filter(task => task.id == id).map(task => task.status = !task.status)
   }
-  
-  return (
-    <div className={`task ${status ? 'doneTask' : ' '}`}>
+  function handleChange(id) {
+    setFilteredTasks(taskFilter(filteredTasks, id))
+    setTasks(taskFilter(tasks, id))
+	} 
+ */
 
-        <input type="checkbox" status={status} onChange={() => {handleChange()}  }/>
+  return (
+    <div className={`task ${task.status ? 'doneTask' : ' '}`}>
+
+        <input type="checkbox"  checked={task.status} onClick={() => { allTask(); handleChange()}  } />
         
-        <div>{title}</div>
+        <div>{task.title}</div>
 
         <button onClick={() => {removeTask(task.id)}} className='remove'>remove</button>
         

@@ -1,14 +1,14 @@
  import React from 'react'
 import TaskItem from './TaskItem'
 
-export default function TaskList({tasks, change, statusAllTask, setTasks}) {
+export default function TaskList({tasks, setTasks,allTask, removeTask  }) {
+
 return (
     <div>
         {
-            
             tasks.map((task) =>
-                <TaskItem setTasks={setTasks} tasks={tasks} statusAllTask={statusAllTask} change={change} task={task} title={task.title} key={task.id}/>
-            )
+            <TaskItem allTask={allTask} removeTask={removeTask} task={task}/>
+        )
             
         }
         

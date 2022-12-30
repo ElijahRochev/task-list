@@ -1,15 +1,23 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import MyButton from './Button/MyButton'
-export default function Footer({activeTask, tasks}) {
+import './footer.css'
+export default function Footer({tasks}) {
 
   return (
     <div>
-        <div>{tasks.length} Items Left</div>
-        <MyButton title='All'/>
-        <MyButton onClick={() => activeTask()} title='Active'  />
-        <MyButton title='Completed'/>
+        
+{/*         <NavLink to={'/'} className={isActive =>
+                  isActive ? 'active' : ''
+                } title='All'/>
+        <NavLink to={'/active'} className={isActive =>
+                  isActive ? 'active' : ''
+                }  title='Active'  />
+        <NavLink to={'/completed'} className={isActive =>
+                  isActive ? 'active' : ''
+                } title='Completed'/>
         <MyButton/>
-
+ */}
     </div>
   )
 }
