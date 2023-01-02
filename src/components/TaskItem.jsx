@@ -16,7 +16,7 @@ export default function TaskItem({allTask,task,removeTask }) {
       <div className='checkboxTitle'>
         <label for="isDone" className='isDone'>
         <input type="checkbox" name="isDone" className='checkbox' checked={task.status} onClick={() => { allTask(); handleChange()}  } />
-        <span className="checkedSpan"></span>
+        <span className="checkedSpan" onClick={() => { allTask(); handleChange()}}></span>
         </label>
         <div className={`title ${task.status ? 'doneTask' : ' '}`}>{task.title}</div>
       </div>
