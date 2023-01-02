@@ -3,11 +3,10 @@ import "./style/app.css"
 import { useState } from "react";
 import {BrowserRouter, Route, Routes, NavLink} from "react-router-dom"
 import TaskForm from "./components/TaskForm";
-import Footer from "./components/Footer";
 import MyButton from "./components/Button/MyButton";
 function App() {
   const [tasks, setTasks] = useState([])
-  const [check, setCheck] = useState(true)
+  const [check, setCheck] = useState(false)
   const createTask = (newTask) => {
     setTasks([newTask, ...tasks])
   }
@@ -18,15 +17,13 @@ function App() {
     setTasks([...tasks].filter(task => task.id !== id))
   }
   function allChecked() {
-    tasks.map(task => task.status = check)
+    tasks.map(task => task.status = !check)
     setCheck(!check)
   }
   function clearChecked() {
     setTasks(tasks.filter(task => !task.status))
   }
-  function hideMenu() {
-    
-  }
+  let w = tasks.filter(task => task.status == true)
   return (
 
     <div className="App">
@@ -34,10 +31,10 @@ function App() {
         <h1>todos</h1>
         <div className="shadowBox">
         <div className="header">
-          <div className="allCheck" onClick={allChecked}>❯</div>
+          <div className={`allCheck ${tasks.length == 0 ? "hide" : ""} ${check ? "allChecked" : ""}`} onClick={allChecked}>❯</div>
         <TaskForm create={createTask}/>
         </div>
-          <div id="main" className={`main ${tasks.length == 0 ? "nonVisible" : ""}`}>
+          <div className={`main ${tasks.length == 0 ? "nonVisible" : ""}`}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<TaskList removeTask={removeTask} setTasks={setTasks} allTask={allTask} tasks={tasks} />} />
@@ -47,17 +44,17 @@ function App() {
           <div className="buttonMenu">
             <div className="itemsLeft">{tasks.filter(task => !task.status).length} Items Left</div>
               <div className="navLinksBlock">
-                <NavLink className="navLinks" to={'/'} >
+                <NavLink className={({ isActive }) => isActive ? 'navLinksActive' : 'navLinks'} to={'/'} >
                   All
                 </NavLink>
-                <NavLink className="navLinks" to={'/active'}>
+                <NavLink className={({ isActive }) => isActive ? 'navLinksActive' : 'navLinks'} to={'/active'}>
                   Active
                 </NavLink>
-                <NavLink className="navLinks" to={'/completed'} >
+                <NavLink className={({ isActive }) => isActive ? 'navLinksActive' : 'navLinks'} to={'/completed'} >
                   Completed
                 </NavLink>
                 </div>
-              <MyButton className='clearComponents' onClick={clearChecked} title="Clear completed"/>
+              <MyButton className={`clearComponents ${w.length == 0 ? "blockVisible" : ""}`} onClick={clearChecked} title="Clear completed"/>
               </div>
               </BrowserRouter>
           </div>
@@ -69,5 +66,3 @@ function App() {
 }
 
 export default App;
-/* <TaskList setFilteredTasks={setFilteredTasks} filteredTasks={filteredTasks} setTasks={setTasks} statusAllTask={checked} change={handleChange}  tasks={tasks}/>
- */
