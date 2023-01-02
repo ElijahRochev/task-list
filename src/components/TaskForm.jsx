@@ -22,7 +22,7 @@ export default function TaskForm({create}) {
             value={title.title}
             onChange={e => setTitle({...title,  title: e.target.value})}
             type="text" 
-            placeholder="Name"
+            placeholder="What needs to be done?"
             
           />
         </form>

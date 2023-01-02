@@ -18,13 +18,13 @@ export default function TaskItem({allTask,task,removeTask }) {
  */
 
   return (
-    <div className={`task ${task.status ? 'doneTask' : ' '}`}>
-
-        <input type="checkbox"  checked={task.status} onClick={() => { allTask(); handleChange()}  } />
+    <div className={`task`}>
+      <div className='checkboxTitle'>
+        <input type="checkbox" className='checkbox' checked={task.status} onClick={() => { allTask(); handleChange()}  } />
         
-        <div>{task.title}</div>
-
-        <button onClick={() => {removeTask(task.id)}} className='remove'>remove</button>
+        <div className={`title ${task.status ? 'doneTask' : ' '}`}>{task.title}</div>
+      </div>
+        <button onClick={() => {removeTask(task.id)}} className='remove'>×</button>
         
     </div>
   )
